@@ -55,4 +55,6 @@ I had a fun time working on this project but I do not plan to continue developme
 
 So if you find any bugs or have other ideas, feel free to contribute!
 
+Recognition to resources located in `resources/credits.py`
+
 www.PaulKr.com
