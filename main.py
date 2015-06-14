@@ -56,7 +56,7 @@ class Main:
 		# Text y-coordinate
 		self.introY = 600
 
-		self.cursor = transform.scale2x(image.load("resources/graphics/misc/cursor.png").convert())
+		self.cursor = transform.scale2x(image.load("resources/graphics/misc/cursor.png").convert_alpha())
 		self.newGame = Rect(203,268,240,63)
 		self.loadGame = Rect(626,268,254,63)
 		self.startOver = True

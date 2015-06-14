@@ -17,10 +17,10 @@ class Player(object):
 		self.fade = fade
 		# Use list comprehension to create lists of animated sprites in a dictionary
 		self.sprites = {
-			"left" : [image.load("resources/graphics/player/lMove/%s.gif"%str(i)).convert() for i in range(4)],
-			"right": [image.load("resources/graphics/player/rMove/%s.png"%str(i)).convert() for i in range(4)],
-			"down": [image.load("resources/graphics/player/dMove/%s.gif"%str(i)).convert() for i in range(4)],
-			"up": [image.load("resources/graphics/player/uMove/%s.gif"%str(i)).convert() for i in range(4)]
+			"left" : [image.load("resources/graphics/player/lMove/%s.gif"%str(i)).convert_alpha() for i in range(4)],
+			"right": [image.load("resources/graphics/player/rMove/%s.png"%str(i)).convert_alpha() for i in range(4)],
+			"down": [image.load("resources/graphics/player/dMove/%s.gif"%str(i)).convert_alpha() for i in range(4)],
+			"up": [image.load("resources/graphics/player/uMove/%s.gif"%str(i)).convert_alpha() for i in range(4)]
 		}
 		self.boatSprites = {
 			"left" : [image.load("resources/graphics/player/boat/lMove/%s.png"%str(i)).convert_alpha() for i in range(8)],
