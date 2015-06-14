@@ -1,17 +1,17 @@
 The Third Element
 =================
 
+The Idea
+--------
+
+While being inspired to create an RPG game, I decided to use similar concepts found in other popular games such as Pokemon and The Legend of Zelda to create "The Third Element".
+
 Overview
 --------
 
 The Third Element is a small scale RPG game written in Python3 for the ICS3U final project. When playing this game, you take on the role of the character Sylon, the last remaining wizard in the land of Oslax. Your goal is to collect all the 3 gems (earth, water and fire) to restore the fate of the people of Oslax. Along the way you will collect items, earn money and fight many creatures.
 
 ![logo](http://paulkr.com/misc/the-last-element-thumbnail.png)
-
-The Idea
---------
-
-While being inspired to create an RPG game, I decided to use similar concepts found in other popular games such as Pokemon and The Legend of Zelda.
 
 Setup
 -----
