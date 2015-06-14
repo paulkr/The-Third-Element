@@ -10,6 +10,7 @@ from pygame import *
 from os import environ
 from json import load
 from random import randint
+from Game.const import *
 
 # Imports
 classes = ["player", "maps", "message", "fade", "treasure", 
@@ -37,8 +38,9 @@ class Main:
 		display.set_icon(image.load("resources/graphics/misc/icon.png").convert_alpha())
 
 		# Play intro music
-		mixer.music.load(Sound().getMusic("introTheme"))
-		mixer.music.play(loops=-1)
+		if not mac:
+			mixer.music.load(Sound().getMusic("introTheme"))
+			mixer.music.play(loops=-1)
 
 		# Fade into loading screen
 		Fade().fadeDark(image.load("resources/graphics/misc/loading.png").convert(), self.screen, (0,0))
@@ -337,50 +339,50 @@ class Main:
 
 				# Music for each scene/world
 				# This hard-coded method allows for music to not be repeated in different rooms
+				if not mac:
+					# Fadeout music when in temple
+					if self.maps.sceneName == "waterTemple" or self.maps.sceneName == "fireTemple":
+						mixer.music.fadeout(500)
 
-				# Fadeout music when in temple
-				if self.maps.sceneName == "waterTemple" or self.maps.sceneName == "fireTemple":
-					mixer.music.fadeout(500)
+					if self.maps.sceneName == "waterWorldEnter":
+						mixer.music.fadeout(500)
+						mixer.music.load(self.sound.getMusic("waterWorldTheme"))
+						mixer.music.play(loops=-1)
 
-				if self.maps.sceneName == "waterWorldEnter":
-					mixer.music.fadeout(500)
-					mixer.music.load(self.sound.getMusic("waterWorldTheme"))
-					mixer.music.play(loops=-1)
+					elif self.maps.sceneName == "fireWorldEnter":
+						mixer.music.fadeout(500)
+						mixer.music.load(self.sound.getMusic("fireWorldTheme"))
+						mixer.music.play(loops=-1)
 
-				elif self.maps.sceneName == "fireWorldEnter":
-					mixer.music.fadeout(500)
-					mixer.music.load(self.sound.getMusic("fireWorldTheme"))
-					mixer.music.play(loops=-1)
+					elif self.maps.sceneName == "mainWorldShop" or self.maps.sceneName == "ultimateShop":
+						mixer.music.fadeout(500)
+						mixer.music.load(self.sound.getMusic("shopTheme"))
+						mixer.music.play(loops=-1)
 
-				elif self.maps.sceneName == "mainWorldShop" or self.maps.sceneName == "ultimateShop":
-					mixer.music.fadeout(500)
-					mixer.music.load(self.sound.getMusic("shopTheme"))
-					mixer.music.play(loops=-1)
+					elif self.maps.sceneName == "church":
+						mixer.music.fadeout(500)
+						mixer.music.load(self.sound.getMusic("churchTheme"))
+						mixer.music.play(loops=-1)		
 
-				elif self.maps.sceneName == "church":
-					mixer.music.fadeout(500)
-					mixer.music.load(self.sound.getMusic("churchTheme"))
-					mixer.music.play(loops=-1)		
+					elif self.maps.sceneName == "surpriseTemple":
+						mixer.music.fadeout(500)
+						mixer.music.load(self.sound.getMusic("castleTheme"))
+						mixer.music.play(loops=-1)
 
-				elif self.maps.sceneName == "surpriseTemple":
-					mixer.music.fadeout(500)
-					mixer.music.load(self.sound.getMusic("castleTheme"))
-					mixer.music.play(loops=-1)
+					elif self.maps.sceneName == "finalTemple":
+						mixer.music.fadeout(500)
+						mixer.music.load(self.sound.getMusic("finalTempleTheme"))
+						mixer.music.play(loops=-1)
 
-				elif self.maps.sceneName == "finalTemple":
-					mixer.music.fadeout(500)
-					mixer.music.load(self.sound.getMusic("finalTempleTheme"))
-					mixer.music.play(loops=-1)
+					elif self.maps.sceneName == "mainWorld":
+						mixer.music.fadeout(500)
+						mixer.music.load(self.sound.getMusic("mainWorldTheme"))
+						mixer.music.play(loops=-1)
 
-				elif self.maps.sceneName == "mainWorld":
-					mixer.music.fadeout(500)
-					mixer.music.load(self.sound.getMusic("mainWorldTheme"))
-					mixer.music.play(loops=-1)
-
-				# Using dictionaries was too slow...
-				# self.sound.stopMusic()
-				# if self.maps.sceneName in self.sound.sceneData:
-				# 	self.sound.playMusic(self.sound.sceneData[self.maps.sceneName], True)
+					# Using dictionaries was too slow...
+					# self.sound.stopMusic()
+					# if self.maps.sceneName in self.sound.sceneData:
+					# 	self.sound.playMusic(self.sound.sceneData[self.maps.sceneName], True)
 
 
 		# Set the fighting state
@@ -408,7 +410,8 @@ class Main:
 					for i in self.moneyLocsUpdate: 
 						if Rect(self.player.x,self.player.y,32,42).colliderect(Rect(i[0],i[1],2,2)):
 							# Play sound
-							self.sound.coinCollected.play()
+							if not mac:
+								self.sound.coinCollected.play()
 							# Add money to player's treasures
 							self.treasure.money += 1
 							moneyLocs = moneyPoints()
@@ -417,9 +420,10 @@ class Main:
 					for i in self.enemyLocsUpdate:
 						if Rect(self.player.x,self.player.y,32,42).colliderect(Rect(i[0],i[1],2,2)):
 							# Change music
-							mixer.music.fadeout(500)
-							mixer.music.load(self.sound.getMusic("mainWorldFight"))
-							mixer.music.play(loops=-1)
+							if not mac:
+								mixer.music.fadeout(500)
+								mixer.music.load(self.sound.getMusic("mainWorldFight"))
+								mixer.music.play(loops=-1)
 							# Generate points and start enemy fight
 							enemyLocs = enemyPoints()
 							self.fight.start()
@@ -571,9 +575,10 @@ while running:
 		# Use flag to play conclusion music once
 		if Game.gameOverMusic:
 			# Play music
-			mixer.music.fadeout(500)
-			mixer.music.load(Game.sound.getMusic("conclusion"))
-			mixer.music.play(loops=-1)
+			if not mac:
+				mixer.music.fadeout(500)
+				mixer.music.load(Game.sound.getMusic("conclusion"))
+				mixer.music.play(loops=-1)
 			Game.gameOverMusic = False
 		# Game over win screen
 		Game.gameOverWin()

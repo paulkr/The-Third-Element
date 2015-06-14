@@ -6,6 +6,7 @@
 # ICS3U Final Project
 
 from pygame import *
+from Game.const import *
 
 class Story:
 	""" Story line class """
@@ -111,9 +112,10 @@ class Story:
 									"But first, explore this building..."], next, "top")
 			if self.message.done:
 				self.mainWorldMsgFinished = True
-				mixer.music.fadeout(500)
-				mixer.music.load(self.sound.getMusic("mainWorldTheme"))
-				mixer.music.play(loops=-1)
+				if not mac:
+					mixer.music.fadeout(500)
+					mixer.music.load(self.sound.getMusic("mainWorldTheme"))
+					mixer.music.play(loops=-1)
 				self.message.reset()
 
 
@@ -509,6 +511,8 @@ class Story:
 			# Reset fade
 			self.fade.reset()
 			# Change music
-			mixer.music.fadeout(500)
-			mixer.music.load(self.sound.getMusic("mainWorldTheme"))
-			mixer.music.play(loops=-1)
+
+			if not mac:
+				mixer.music.fadeout(500)
+				mixer.music.load(self.sound.getMusic("mainWorldTheme"))
+				mixer.music.play(loops=-1)

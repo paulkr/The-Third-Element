@@ -9,6 +9,7 @@ from pygame import *
 from random import randint, choice
 
 from Game.enemy import Enemy
+from Game.const import *
 
 class Fight:
 	""" Main fight class """
@@ -429,9 +430,10 @@ class Fight:
 						pause(1300)
 
 						if maps.sceneName == "mainWorld":
-							mixer.music.fadeout(500)
-							mixer.music.load(self.sound.getMusic("mainWorldTheme"))
-							mixer.music.play(loops=-1)
+							if not mac:
+								mixer.music.fadeout(500)
+								mixer.music.load(self.sound.getMusic("mainWorldTheme"))
+								mixer.music.play(loops=-1)
 
 					# Change screen state and finish fight sequence
 					self.enemyStatsShowing = False
