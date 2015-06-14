@@ -57,4 +57,9 @@ So if you find any bugs or have other ideas, feel free to contribute!
 
 Recognition to resources located in `resources/credits.py`
 
+Note
+----
+
+Pygame is not well supported on mac, so the fighting is glitchy and the sound is disabled.
+
 www.PaulKr.com
