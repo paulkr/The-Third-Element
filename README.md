@@ -60,6 +60,6 @@ Recognition to resources located in `resources/credits.py`
 Note
 ----
 
-Pygame is not well supported on mac, so the fighting is glitchy and the sound is disabled.
+Pygame is not well supported on mac, so when using a mac, the fighting is glitchy and the sound is disabled.
 
 www.PaulKr.com
